@@ -9,6 +9,7 @@ const leavesRoutes: Routes = [
 
     {path: '', component: LeavesComponent, children: [
         {path: 'list', component: LeaveslistComponent},
+        {path: 'new', component: LeaveEditComponent},
         {path: ':id', component: LeaveViewComponent},
         {path: ':id/edit', component: LeaveEditComponent}
     ]}

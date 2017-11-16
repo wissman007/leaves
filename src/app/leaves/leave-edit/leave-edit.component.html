@@ -1,3 +1,72 @@
-<p>
-  leave-edit works!
-</p>
+<hr>
+<div class="row">
+  <div class="col col-xs-12" class="form-group">
+    <form [formGroup]="leaveForm" >
+    <div class="row">
+      <div class="col col-xs-12">
+        <label for="startDate">Start Date</label>
+        <input
+                id="startDate"
+                name="startDate"
+                type="text"
+                class="form-control"
+                formControlName="startDate"
+        >
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col col-xs-12">
+        <label for="endDate">End Date</label>
+        <input
+                id="endDate"
+                name="endDate"
+                type="text"
+                class="form-control"
+                formControlName="endDate"
+        >
+
+      </div>
+    </div>
+
+    <!--<div class="row">-->
+      <!--<div class="col col-xs-12">-->
+        <!--<label >Type</label>-->
+        <!--<Select-->
+
+                <!--class="form-control"-->
+                <!--formControlName="typeLeave"-->
+        <!--&gt;-->
+          <!--<option *ngFor="let type of typesLeave;" [value]="type">{{type}}</option>-->
+
+
+        <!--</Select>-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <div class="row">
+      <div class="col col-xs-12">
+        <label for="description">Description</label>
+        <textarea
+                rows="6"
+                id="description"
+                name="description"
+                type="text"
+                class="form-control"
+                formControlName="description"
+        ></textarea>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col col-xs-12">
+        <button type="button" class="btn btn-success" (click)="onSaveLeave()">Save</button>
+        <button type="button" class="btn btn-danger">Cancel</button>
+        <button type="button" class="btn btn-primary">Clear</button>
+      </div>
+    </div>
+
+    </form>
+  </div>
+</div>
