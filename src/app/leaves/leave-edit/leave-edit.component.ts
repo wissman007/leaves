@@ -53,20 +53,17 @@ export class LeaveEditComponent implements OnInit {
     this.leaveForm = new FormGroup({
       'startDate' : new FormControl(startDate, Validators.required),
       'endDate' : new FormControl(endDate, Validators.required),
-      'description': new FormControl(description, Validators.required),
-      'typeLeave': new FormControl(typeLeave, Validators.required)
+      'description': new FormControl(description, Validators.required)
+ //     'typeLeave': new FormControl(typeLeave, Validators.required)
 
     });
   }
 
   onSaveLeave(){
     console.log(this.leaveForm);
-    // let leave: LeaveModel;
-    // leave.startDate = this.leaveForm.value.startDate;
-    // leave.endDate = this.leaveForm.value.endDate;
-    // leave.description = this.leaveForm.value.description;
-    // leave.typeLeave = this.leaveForm.value.typeLeave;
     this.leaveService.saveLeave(this.leaveForm.value);
+    this.onCancel();
+
 
   }
 
