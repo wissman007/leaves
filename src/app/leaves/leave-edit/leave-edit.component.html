@@ -1,7 +1,7 @@
 <hr>
 <div class="row">
   <div class="col col-xs-12" class="form-group">
-    <form [formGroup]="leaveForm" >
+    <form [formGroup]="leaveForm" #f="ngForm">
     <div class="row">
       <div class="col col-xs-12">
         <label for="startDate">Start Date</label>
@@ -59,9 +59,9 @@
     <br>
     <div class="row">
       <div class="col col-xs-12">
-        <button type="button" class="btn btn-success" (click)="onSaveLeave()">Save</button>
-        <button type="button" class="btn btn-danger">Cancel</button>
-        <button type="button" class="btn btn-primary">Clear</button>
+        <button type="button" class="btn btn-success" [disabled]="!leaveForm.valid" (click)="onSaveLeave()">Save</button>
+        <button type="button" class="btn btn-danger"  (click)="onCancel()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="onClear()">Clear</button>
       </div>
     </div>
 

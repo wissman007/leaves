@@ -31,7 +31,7 @@ export class LeaveViewComponent implements OnInit {
 
   onDeleteLeave(){
     this.leaveService.deleteLeave(this.index)
-
+      this.router.navigate(['..'], {relativeTo: this.route});
 
   }
 

@@ -23,4 +23,9 @@ export class LeaveService {
         this.leaves.splice(index, 1);
         this.leavesChanged.next(this.leaves.slice());
     }
+
+    saveLeave(leave: LeaveModel){
+        this.leaves.push(leave);
+        this.leavesChanged.next(this.leaves.slice());
+    }
 }
