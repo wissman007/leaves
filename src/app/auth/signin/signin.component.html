@@ -1,0 +1,49 @@
+<div class="col-md-6 col-md-offset-3">
+  <div class="alert alert-info">
+    Email: test@test.com<br />
+    Password: test
+  </div>
+</div>
+
+
+<div class="col col-md-6  col-md-offset-3">
+  <h2>Login</h2>
+  <form (ngSubmit)="onConnect(f)" #f="ngForm">
+    <div class="input-group" >
+      <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+      <input
+              type="text"
+              id="email"
+              name="email"
+              class="form-control"
+              ngModel
+              required
+              email
+              #email="ngModel"
+
+      >
+      <span *ngIf="!email.valid && email.touched" class="help-block">The email is not valid</span>
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+      <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-control"
+              ngModel
+              required
+              #password="ngModel"
+
+      >
+
+      <span *ngIf="!password.valid && password.touched" class="help-block">The password is required</span>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-success" [disabled]="!f.valid" >Login</button>
+      <button type="button" class="btn btn-clear" (click)="onClear(f)">Clear</button>
+    </div>
+    <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+
+  </form>
+</div>

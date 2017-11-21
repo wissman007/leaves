@@ -1,0 +1,10 @@
+<a class="list-group-item clearfix"
+   routerLinkActive="active"
+   [routerLink]="[index]"
+>
+  <div class="pull-left">
+    <h4 class="list-group-item-heading">{{user.firstName}} {{user.lastName }}</h4>
+    <p class="list-group-item-text">Birth date {{user.birthDate}} </p>
+  </div>
+  <span class="pull-right">Identification {{user.id}}</span>
+</a>

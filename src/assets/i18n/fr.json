@@ -1,0 +1,11 @@
+{
+ "HEADER": {
+    "TITLE": "Gestion des congés",
+    "ADMIN": "Administration",
+    "LEAVE": "Leave",
+    "LANGUAGE": "Language",
+    "FRENCH": "Français",
+    "ENGLISH": "Englais",
+   "REPORTING": "Rapports"
+  }
+}
