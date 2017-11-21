@@ -1,3 +1,8 @@
-<p>
-  administration works!
-</p>
+<div class="row">
+  <div class="col col-xs-4 col-md-3">
+    <app-menu [idTemplate]="'admin'"></app-menu>
+  </div>
+  <div class="col col-xs-5 col-md-7">
+    <router-outlet></router-outlet>
+  </div>
+</div>

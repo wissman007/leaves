@@ -8,12 +8,14 @@ import { LeaveViewComponent } from './leave-view/leave-view.component';
 import {LeavesRoutingModule} from "./leaves-routing.module";
 import {LeaveService} from "./services/leaves.service";
 import {ReactiveFormsModule, FormsModule} from "@angular/forms";
+import {MenuModule} from "../menu/menu.module";
 
 @NgModule({
   imports: [
     CommonModule,
     LeavesRoutingModule,
     ReactiveFormsModule,
+    MenuModule
 
 
   ],

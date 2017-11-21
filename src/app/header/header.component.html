@@ -1,24 +1,43 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a routerLink="/" class="navbar-brand">Leave Management</a>
+            <a routerLink="/" class="navbar-brand"><span class="fa fa-home fa-lg"></span> {{'HEADER.TITLE' | translate}}</a>
         </div>
         <div class="navbar-default">
-            <ul class="nav navbar-nav">
-                <li routerLinkActive="active"><a routerLink="/administration">Administration</a></li>
-                <li routerLinkActive="active"><a routerLink="/leaves">Leaves</a></li>
+            <ul class="nav navbar-nav" *ngIf="authService.isAuthentificated">
+                <li routerLinkActive="active"><a routerLink="/admin">{{'HEADER.ADMIN' | translate}}</a></li>
+                <li routerLinkActive="active"><a routerLink="/leaves">{{'HEADER.LEAVE' | translate}}</a></li>
+                <li routerLinkActive="active"><a routerLink="/reporting">{{'HEADER.REPORTING' | translate}}</a></li>
             </ul>
+
+
+
             <ul class="nav navbar-nav navbar-right">
-                 <li class="dropdown">
+                <li class="dropdown" appDropdown>
+                    <a class="dropdown-toggle"  role="button" (click)="onSelectFrench()"><span class="flag-icon flag-icon-fr"></span> {{'HEADER.FRENCH' | translate}}
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li></li>
+                        <li><a (click)="onSelectEnglish()"><span class="flag-icon flag-icon-gb"></span> {{'HEADER.ENGLISH' | translate}}</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" >
+                <li routerLinkActive="active"><a routerLink="/auth/signin" *ngIf="!authService.isAuthentificated">Login</a></li>
+                <li routerLinkActive="active"><a routerLink="/auth/signout" *ngIf="authService.isAuthentificated">Logout</a></li>
+                <li routerLinkActive="active"><a routerLink="/auth/signup">Register</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" *ngIf="authService.isAuthentificated">
+                 <li class="dropdown" appDropdown>
                     <a class="dropdown-toggle"  role="button">Manage<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a>Save Data</a></li>
                         <li><a>Fech Data</a></li>
                     </ul>
                 </li>
-
-            </ul>
-        </div>
+          </ul>
+      </div>
     </div>
 
 </nav>

@@ -1,3 +1,37 @@
-<p>
-  menu works!
-</p>
+<ng-template [ngIf]="idTemplate==='admin'">
+  <h3> Users Administration</h3>
+  <hr>
+  <ul class="nav">
+
+   <li class="nav-item" routerLinkActive="active">
+      <a  routerLink="/admin/users"><span class="fa fa-list fa-lg"></span> Users</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" ><span class="fa fa-list fa-lg"></span> Reporting</a>
+    </li>
+  </ul>
+</ng-template>
+<ng-template [ngIf]="idTemplate==='leave'">
+<h3> Leaves </h3>
+  <hr>
+  <ul class="nav flex-column">
+    <li class="nav-item">
+      <a class="nav-link active" ><span class="fa fa-list fa-lg"></span> Leaves</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" ><span class="fa fa-list fa-lg"></span> Add Leave</a>
+    </li>
+  </ul>
+</ng-template>
+<ng-template [ngIf]="idTemplate==='reporting'">
+  <h3> Reporting</h3>
+  <hr>
+  <ul class="nav flex-column">
+    <li class="nav-item">
+      <a class="nav-link active" ><span class="fa fa-list fa-lg"></span> Reports leaves</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" ><span class="fa fa-list fa-lg"></span> Reports users</a>
+    </li>
+  </ul>
+</ng-template>
