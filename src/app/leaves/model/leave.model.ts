@@ -3,6 +3,8 @@ export class LeaveModel {
        public startDate: string,
        public endDate: string,
        public typeLeave: string,
-       public description: string){}
+       public description: string,
+       public type: string
+   ){}
 
 }

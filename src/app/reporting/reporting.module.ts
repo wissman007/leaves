@@ -4,14 +4,18 @@ import { ReportingComponent } from './reporting.component';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MenuModule} from "../menu/menu.module";
+import { LeaveReportsComponent } from './leave-reports/leave-reports.component';
+import {ReportingRoutingModule} from "./reporting-routing.module";
 
 @NgModule({
   imports: [
     CommonModule,
     NgxChartsModule,
-    BrowserAnimationsModule,
-    MenuModule
+ //   BrowserAnimationsModule,
+    MenuModule,
+    ReportingRoutingModule
   ],
-  declarations: [ReportingComponent]
+
+  declarations: [ReportingComponent, LeaveReportsComponent]
 })
 export class ReportingModule { }

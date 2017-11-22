@@ -1,57 +1,57 @@
 export var single = [
   {
-    "name": "Germany",
-    "value": 8940000
+    "name": "Wissem",
+    "value": 20
   },
   {
-    "name": "USA",
-    "value": 5000000
+    "name": "Balla",
+    "value": 25
   },
   {
-    "name": "France",
-    "value": 7200000
+    "name": "Djelloul",
+    "value": 30
   }
 ];
 
 export var multi = [
   {
-    "name": "Germany",
+    "name": "Balla",
     "series": [
       {
-        "name": "2010",
-        "value": 7300000
+        "name": "2016",
+        "value": 31
       },
       {
-        "name": "2011",
-        "value": 8940000
+        "name": "2017",
+        "value": 29
       }
     ]
   },
 
   {
-    "name": "USA",
+    "name": "Wissem",
     "series": [
       {
-        "name": "2010",
-        "value": 7870000
+        "name": "2016",
+        "value": 25
       },
       {
-        "name": "2011",
-        "value": 8270000
+        "name": "2017",
+        "value": 28
       }
     ]
   },
 
   {
-    "name": "France",
+    "name": "Mickael",
     "series": [
       {
-        "name": "2010",
-        "value": 5000002
+        "name": "2016",
+        "value": 20
       },
       {
-        "name": "2011",
-        "value": 5800000
+        "name": "2017",
+        "value": 35
       }
     ]
   }

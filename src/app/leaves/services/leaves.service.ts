@@ -6,8 +6,8 @@ export class LeaveService {
    leavesChanged = new Subject<LeaveModel[]>()
 
    leaves: LeaveModel [] = [
-        new LeaveModel('12-12-2017','12-12-2018','CM', 'Holidays In France'),
-        new LeaveModel('21-02-2018','28-02-2018','CP','Holidays at the ski' )
+        new LeaveModel('12-12-2017','12-12-2018','CM', 'Holidays In France','CC'),
+        new LeaveModel('21-02-2018','28-02-2018','CP','Holidays at the ski', 'CC' )
 
     ];
 

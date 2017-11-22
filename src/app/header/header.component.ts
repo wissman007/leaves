@@ -9,7 +9,7 @@ import {TranslateService} from "@ngx-translate/core";
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private authService: AuthService, private translateService: TranslateService) {}
+  constructor(public authService: AuthService, private translateService: TranslateService) {}
 
   ngOnInit() {
   }
@@ -24,3 +24,4 @@ export class HeaderComponent implements OnInit {
   }
 
 }
+

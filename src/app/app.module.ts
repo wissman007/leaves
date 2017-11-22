@@ -15,9 +15,11 @@ import {FooterModule} from "./footer/footer.module";
 import {AuthService} from "./auth/auth.service";
 import {AuthGuard} from "./auth/auth-guard.service";
 import { HomeComponent } from './home/home.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http, 'assets/i18n/', ".json");
 }
 
 @NgModule({
@@ -28,6 +30,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     RouterModule,
     AppRoutingModule,
     HeaderModule,
@@ -37,6 +40,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ReportingModule,
     MenuModule,
     FooterModule,
+
     TranslateModule.forRoot(
       {
         loader: {
