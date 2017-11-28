@@ -15,11 +15,19 @@ export class LeaveslistComponent implements OnInit, OnDestroy {
       private route: ActivatedRoute,
       private router: Router ) {}
 
-  leaves = this.leaveService.getLeaves();
+  leaves: LeaveModel[] = [];
 
   leavesSubscription: Subscription;
-
+  leavesHttpSubscription: Subscription;
   ngOnInit() {
+
+    this.leavesHttpSubscription = this.leaveService.getLeaves()
+      .subscribe(
+        (leaves: LeaveModel[]) => {
+          this.leaves = leaves;
+        }
+      )
+
     this.leavesSubscription = this.leaveService.leavesChanged
         .subscribe(
             (leaves: LeaveModel[]) => {

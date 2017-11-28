@@ -2,28 +2,49 @@ import {Router, ActivatedRoute} from "@angular/router";
 import {Injectable} from "@angular/core";
 import {UserService} from "../administration/services/user.service";
 import {UserModel} from "../administration/models/user.model";
+import {Http} from "@angular/http";
+import {Subscription} from "rxjs";
 
 @Injectable()
 export class AuthService {
 
     isAuthentificated = false;
+    authentificatedUser: UserModel;
     constructor(
 
         private router: Router,
         private route: ActivatedRoute,
-        private userService: UserService){
+        private userService: UserService
 
-    }
-
+    ){}
+    usersAuthentified: UserModel[]=[];
     authentificate(email: string, password: string){
+       this.userService.getUsers()
+          .subscribe(
+            (users: UserModel[]) => {
+              console.log(users);
+              this.usersAuthentified = users;
+            }
+          );
 
-        if((email==='test@test.com')&&(password === 'test')) {
+
+        for(let user of this.usersAuthentified) {
+          if((email===user.email)&&(password === user.password)) {
             this.isAuthentificated = true;
+            this.authentificatedUser = user;
+           }
+        }
+
+
+
+        if(this.isAuthentificated) {
             this.router.navigate(['/']);
         }
         else {
             this.router.navigate(['auth/signin'],{relativeTo:this.route});
         }
+
+
 
    }
 

@@ -8,12 +8,17 @@ import { UserEditComponent } from './user-edit/user-edit.component';
 import {AdministrationRoutingModule} from "./administration-routing.module";
 import {MenuModule} from "../menu/menu.module";
 import {UserService} from "./services/user.service";
+import {HttpModule} from "@angular/http";
+import {ReactiveFormsModule} from "@angular/forms";
+
 
 @NgModule({
   imports: [
     CommonModule,
     AdministrationRoutingModule,
-    MenuModule
+    ReactiveFormsModule,
+    MenuModule,
+    HttpModule
   ],
   exports: [
     AdministrationComponent
