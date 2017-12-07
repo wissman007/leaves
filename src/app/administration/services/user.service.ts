@@ -2,11 +2,13 @@ import {UserModel} from "../models/user.model";
 import {Subject} from "rxjs/Subject";
 import {Http, Response, Headers} from '@angular/http'
 import {Injectable} from "@angular/core";
+import {AuthService} from "../../auth/auth.service";
+import {ActivatedRoute, Router} from "@angular/router";
 @Injectable()
 export class UserService {
 
 
-  constructor(private http: Http){};
+  constructor(private http: Http, private authService: AuthService, private route: ActivatedRoute, private router: Router){};
 
   usersChanged = new Subject<UserModel[]>();
   users: UserModel[] = [];
@@ -21,16 +23,13 @@ export class UserService {
   */
   getUsers(){
     this.users = [];
-    const headers = new Headers(
-          {
-            'Content-Type': 'application/json',
-            'Authorization': 'Basic dXNlcjo1Yjg2MDExMC01YjI1LTQwYmYtODI4OS1jMTE5OTlhYWZlNmE='
 
 
-          }
+    const headers = new Headers();
+    headers.append('Authorization', 'Bearer '+ this.authService.token );
+    headers.append('Content-Type', 'application/X-www-form-urlencoded');
 
-      );
-    return this.http.get("http://localhost:8080/users", headers )
+    return this.http.get("http://localhost:8080/users", {headers: headers} )
         .map(
           (response: Response) => {
             const data = response.json();
@@ -39,13 +38,10 @@ export class UserService {
                let userTmp = new UserModel(
                 user.email, user.firstName, user.lastName, user.birthDate,user.id,'',user.password
               )
-               console.log(userTmp);
                this.users.push(userTmp);
-
             }
             return this.users.slice();
           }
-
           );
 
 
@@ -56,12 +52,19 @@ export class UserService {
     return this.users[index];
   }
 
+
+  register(email: string, password: string){
+
+    let user= new UserModel(email,'','','',4,'',password);
+    this.addUser(user)
+    this.router.navigate(['/admin/users'], {relativeTo:this.route});
+  }
+
   addUser(user: UserModel){
     const headers = new Headers(
       {
         'Content-Type': 'application/json',
-        'Authorization': 'Basic dXNlcjo1Yjg2MDExMC01YjI1LTQwYmYtODI4OS1jMTE5OTlhYWZlNmE='
-
+        'Authorization': 'Bearer '+this.authService.token
 
       }
 
@@ -76,4 +79,7 @@ export class UserService {
     this.users.push(user);
     this.usersChanged.next(this.users.slice());
   }
+
+
+
 }

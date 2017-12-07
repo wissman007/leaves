@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {AuthService} from "../auth.service";
 import {NgFor} from "@angular/common";
+import {UserService} from "../../administration/services/user.service";
 
 @Component({
   selector: 'app-signup',
@@ -13,7 +14,7 @@ export class SignupComponent implements OnInit {
 
 //  email: string;
 //  password: string;
-  constructor(private authService: AuthService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
 
@@ -25,7 +26,7 @@ export class SignupComponent implements OnInit {
 
     console.log('email: ' + email + ' password: ' + password);
     // console.log(this.formSignUp.value.email);
-    this.authService.register(email, password);
+    this.userService.register(email, password);
   }
 
   onClear(form: NgForm) {

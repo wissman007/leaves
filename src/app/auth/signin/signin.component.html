@@ -18,7 +18,7 @@
               class="form-control"
               ngModel
               required
-              email
+
               #email="ngModel"
 
       >
@@ -43,7 +43,7 @@
       <button type="submit" class="btn btn-success" [disabled]="!f.valid" >Login</button>
       <button type="button" class="btn btn-clear" (click)="onClear(f)">Clear</button>
     </div>
-    <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+
 
   </form>
 </div>

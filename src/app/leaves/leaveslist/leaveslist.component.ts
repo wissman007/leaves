@@ -1,9 +1,10 @@
+import {DomSanitizer,SafeResourceUrl} from '@angular/platform-browser'
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {LeaveService} from "../services/leaves.service";
 import {Subscription} from "rxjs";
 import {LeaveModel} from "../model/leave.model";
 import {ActivatedRoute, Router} from "@angular/router";
-
+import 'rxjs/Rx' ;
 @Component({
   selector: 'app-leaveslist',
   templateUrl: './leaveslist.component.html',
@@ -13,6 +14,7 @@ export class LeaveslistComponent implements OnInit, OnDestroy {
   constructor(
       private leaveService: LeaveService,
       private route: ActivatedRoute,
+      private domSanitizer: DomSanitizer,
       private router: Router ) {}
 
   leaves: LeaveModel[] = [];
@@ -20,12 +22,24 @@ export class LeaveslistComponent implements OnInit, OnDestroy {
   leavesSubscription: Subscription;
   leavesHttpSubscription: Subscription;
   ngOnInit() {
-
+    console.log('Init leaves list pdf');
     this.leavesHttpSubscription = this.leaveService.getLeaves()
       .subscribe(
-        (leaves: LeaveModel[]) => {
+        (data) => {
+
+          let fileUrl = URL.createObjectURL(data);
+          window.open(fileUrl);
+
+        },
+        error => {
+          console.log(error);
+        }
+
+        /*(leaves: LeaveModel[]) => {
+          console.log(leaves);
           this.leaves = leaves;
         }
+        */
       )
 
     this.leavesSubscription = this.leaveService.leavesChanged
@@ -43,6 +57,7 @@ export class LeaveslistComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(){
     this.leavesSubscription.unsubscribe();
+    this.leavesHttpSubscription.unsubscribe();
   }
 
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../auth/auth.service";
 import {TranslateService} from "@ngx-translate/core";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,10 @@ import {TranslateService} from "@ngx-translate/core";
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public authService: AuthService, private translateService: TranslateService) {}
+  constructor(private authService: AuthService,
+              private translateService: TranslateService,
+              private route: ActivatedRoute,
+              private router: Router) {}
 
   ngOnInit() {
   }
@@ -23,5 +27,10 @@ export class HeaderComponent implements OnInit {
     this.translateService.use('en');
   }
 
+
+  logout(){
+    this.authService.logout();
+    this.router.navigate(['/'], {relativeTo: this.route})
+  }
 }
 

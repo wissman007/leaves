@@ -6,6 +6,7 @@ import {AuthRoutingModule} from "./auth-routing.module";
 import {AuthComponent} from "./auth.component";
 import {FormsModule} from "@angular/forms";
 import {SignOutComponent} from "./signout.component";
+import { FaceBookLoginComponent } from './face-book-login/face-book-login.component';
 
 @NgModule({
   imports: [
@@ -13,6 +14,6 @@ import {SignOutComponent} from "./signout.component";
     AuthRoutingModule,
     FormsModule
   ],
-  declarations: [SigninComponent, SignupComponent, AuthComponent, SignOutComponent]
+  declarations: [SigninComponent, SignupComponent, AuthComponent, SignOutComponent, FaceBookLoginComponent]
 })
 export class AuthModule { }

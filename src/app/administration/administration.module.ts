@@ -12,13 +12,15 @@ import {HttpModule} from "@angular/http";
 import {ReactiveFormsModule} from "@angular/forms";
 
 
+
 @NgModule({
   imports: [
     CommonModule,
     AdministrationRoutingModule,
     ReactiveFormsModule,
     MenuModule,
-    HttpModule
+    HttpModule,
+
   ],
   exports: [
     AdministrationComponent

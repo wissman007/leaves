@@ -15,6 +15,7 @@ export class SignOutComponent implements OnInit{
 
     ngOnInit(){
         this.authService.isAuthentificated = false;
+        this.authService.logout();
         this.router.navigate(['/']);
     }
 

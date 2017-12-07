@@ -1,61 +1,60 @@
-import {Router, ActivatedRoute} from "@angular/router";
 import {Injectable} from "@angular/core";
-import {UserService} from "../administration/services/user.service";
-import {UserModel} from "../administration/models/user.model";
-import {Http} from "@angular/http";
-import {Subscription} from "rxjs";
+import {Http, Response, Headers} from "@angular/http";
+import {Credentials} from "./signin/signin.component";
 
 @Injectable()
 export class AuthService {
 
     isAuthentificated = false;
-    authentificatedUser: UserModel;
+    token;
+
     constructor(
+        private http: Http
+    ){
 
-        private router: Router,
-        private route: ActivatedRoute,
-        private userService: UserService
+      var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      this.token = currentUser && currentUser.token;
+    }
 
-    ){}
-    usersAuthentified: UserModel[]=[];
-    authentificate(email: string, password: string){
-       this.userService.getUsers()
-          .subscribe(
-            (users: UserModel[]) => {
-              console.log(users);
-              this.usersAuthentified = users;
-            }
-          );
+   login(credentials: Credentials){
+
+      const headers = new Headers();
+      headers.append('Authorization', 'Basic bGVhdmUtY2xpZW50OmxlYXZlLXNlY3JldA==');
+      headers.append('Content-Type', 'application/json');
 
 
-        for(let user of this.usersAuthentified) {
-          if((email===user.email)&&(password === user.password)) {
-            this.isAuthentificated = true;
-            this.authentificatedUser = user;
-           }
-        }
+      let creds = 'username=' + credentials.username + '&password=' + credentials.password;
 
+       return this.http.post('http://localhost:8080/oauth/token?grant_type=password&'+creds, [], {headers:headers})
+         .map(
 
-
-        if(this.isAuthentificated) {
-            this.router.navigate(['/']);
-        }
-        else {
-            this.router.navigate(['auth/signin'],{relativeTo:this.route});
-        }
+            (response: Response) => {
+                let token = response.json().access_token;
+                if(token) {
+                  this.token=token;
+                  localStorage.setItem('currentUser', JSON.stringify({ username: credentials.username, token: token }));
+                  this.isAuthentificated = true;
+                  return true;
+                }
+                else {
+                  this.isAuthentificated = false;
+                  return false;
+                }
+             },
+           (error) => console.log(error)
+         );
 
 
 
    }
 
-    register(email: string, password: string){
-        this.isAuthentificated = true;
-        let user= new UserModel(email,'','','',4,'',password);
-        this.userService.addUser(user)
-        this.router.navigate(['/admin/users'], {relativeTo:this.route});
-    }
 
-    login(email: string, password: string){
+
+    logout(){
+      // clear token remove user from local storage to log user out
+      this.token = null;
+      this.isAuthentificated = false;
+      localStorage.removeItem('currentUser');
 
     }
 

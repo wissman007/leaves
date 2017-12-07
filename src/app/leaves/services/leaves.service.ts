@@ -1,7 +1,10 @@
 
 import {LeaveModel} from "../model/leave.model";
 import {Subject} from "rxjs";
-import {Http, Response} from "@angular/http";
+import {Http, Response, Headers, ResponseContentType} from "@angular/http";
+import {Injectable} from "@angular/core";
+import {AuthService} from "../../auth/auth.service";
+@Injectable()
 export class LeaveService {
 
    leavesChanged = new Subject<LeaveModel[]>()
@@ -15,27 +18,46 @@ export class LeaveService {
     ];
 
 */
-    constructor(private http: Http){}
+    constructor(private http: Http, private authService: AuthService){}
 
     getLeaves(){
+
       this.leaves=[];
-      return this.http.get('http://localhost:8080/leaves')
-          .map(
+
+      const headers = new Headers(
+        {
+          'Content-Type': 'application/pdf',
+          'Authorization': 'Bearer ' + this.authService.token
+
+
+        }
+
+      );
+      return this.http.get('http://localhost:8080/leaves/1/pdf',  {headers:headers, responseType: ResponseContentType.Blob }).map(
+        (res) => {
+          return new Blob([res.blob()], { type: 'application/pdf' })
+        });
+
+
+         /* .map(
             (response: Response) => {
+              console.log(response);
               const data = response.json();
+
               for ( let leave of data){
                 this.leaves.push(new LeaveModel(
-                  data.startDate,
-                  data.endDate,
-                  data.typeLeave,
-                  data.description,
-                  data.type
+                  leave.startDate,
+                  leave.endDate,
+                  leave.typeLeave,
+                  leave.description,
+                  leave.type
                 ));
               }
-              return this.leaves;
+              console.log(this.leaves);
+              return this.leaves.slice();
             }
 
-          );
+          );*/
 
     }
 
